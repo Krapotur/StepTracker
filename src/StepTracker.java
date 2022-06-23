@@ -52,7 +52,6 @@ public class StepTracker {
                 System.out.println("Количество шагов не может быть отрицательным!");
             } else {
                 monthToData[month - 1].dayToMonth[day - 1] = steps;
-                System.out.println("Шаги- " + monthToData[month - 1].dayToMonth[day - 1]);
                 return;
             }
         }
