@@ -1,7 +1,7 @@
 public class MonthData {
     int [] dayToMonth = new int[30];
 
-    void createDays(){
+    MonthData(){
         for (int day: dayToMonth){
             dayToMonth[day] = 0;
         }

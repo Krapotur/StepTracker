@@ -1,46 +1,19 @@
 import java.util.Scanner;
 
 public class StepTracker {
-    static int goalStepsByDay;
-    static int steps;
-    static Scanner scanner;
-    static MonthData[] monthToData;
+    int goalStepsByDay = 10000;
+    int steps;
+    Scanner scanner = new Scanner(System.in);
+    MonthData[] monthToData;
 
-    public static void main(String[] args) {
-        goalStepsByDay = 10000;
-        scanner = new Scanner(System.in);
+    public StepTracker() {
         monthToData = new MonthData[12];
-
         for (int i = 0; i < monthToData.length; i++) {
             monthToData[i] = new MonthData();
-            monthToData[i].createDays();
-        }
-
-        while (true) {
-            printMenu();
-            int command = scanner.nextInt();
-            if (command == 1) {
-                saveSumStepsByDay();
-            } else if (command == 2) {
-                showStatsByMonth();
-            } else if (command == 3) {
-                changeGoalStepsByDay();
-            } else if (command == 4) {
-                return;
-            } else {
-                System.out.println("Такой команды нет!");
-            }
         }
     }
-
-    public static void printMenu() {
-        System.out.println("1. Ввести количество шагов за определённый день");
-        System.out.println("2. Напечатать статистику за определённый месяц");
-        System.out.println("3. Изменить цель по количеству шагов в день");
-        System.out.println("4. Выйти из приложения");
-    }
-
-    public static void saveSumStepsByDay() {
+    
+     void saveSumStepsByDay() {
         System.out.print("Выберите месяц(от 1-12): ");
         int month = scanner.nextInt();
         System.out.print("Выберите день(от 1-30): ");
@@ -57,10 +30,10 @@ public class StepTracker {
         }
     }
 
-    public static void showStatsByMonth() {
+    void showStatsByMonth() {
         int sumSteps = 0;
 
-        System.out.println("За какой месяц Вас интересует статистика?  ");
+        System.out.print("За какой месяц Вас интересует статистика?:  ");
         int month = scanner.nextInt();
 
         System.out.println("Количество пройденных шагов по дням: ");
@@ -81,7 +54,7 @@ public class StepTracker {
 
     }
 
-    public static int getMaxStepsByMonth(int month) {
+    int getMaxStepsByMonth(int month) {
         int maxSteps = 0;
         for (int i = 0; i < 30; i++) {
             if (monthToData[month - 1].dayToMonth[i] > maxSteps) {
@@ -91,7 +64,7 @@ public class StepTracker {
         return maxSteps;
     }
 
-    public static int averageNumberSteps(int sumSteps, int month) {
+    int averageNumberSteps(int sumSteps, int month) {
         int sumDays = 0;
         for (int i = 0; i < 30; i++) {
             if (monthToData[month - 1].dayToMonth[i] > 0 && i == 0) {
@@ -103,7 +76,7 @@ public class StepTracker {
         return sumSteps / sumDays;
     }
 
-    public static void changeGoalStepsByDay() {
+    void changeGoalStepsByDay() {
         while (true) {
             System.out.print("Укажите количество шагов в день для новой цели: ");
             int goal = scanner.nextInt();
@@ -117,7 +90,7 @@ public class StepTracker {
 
     }
 
-    public static int bestSeries(int month) {
+    int bestSeries(int month) {
         int bestSeries = 0;
         int sumSteps = 0;
 
